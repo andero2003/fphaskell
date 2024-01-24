@@ -1,5 +1,3 @@
-import Data.Semigroup (diff)
-
 -- 1
 
 timesTen :: Int -> Int
