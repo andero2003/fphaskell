@@ -86,7 +86,8 @@ gcd a b
 
 findRoot :: Int -> Int -> Int
 findRoot n s
-
+    | s * s <= n = s
+    | otherwise = findRoot n (s-1)
 
 intSquareRoot :: Int -> Int
 intSquareRoot n = findRoot n n
