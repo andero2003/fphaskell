@@ -1,4 +1,6 @@
 import Control.Arrow (Arrow(first))
+import Data.Char
+
 -- 1
 
 sumDifference :: Int -> Int -> (Int, Int)
@@ -33,3 +35,45 @@ firstSquares :: Int -> [Int]
 firstSquares n = [x * x | x <- firstNumbers n]
 
 -- 6
+
+capitalise :: String -> String
+capitalise str = [toUpper char | char <- str]
+
+-- 7
+
+onlyDigits :: String -> String
+onlyDigits str = [char | char <- str, isDigit char]
+
+-- 8
+
+capMarks :: [StudentMark] -> [StudentMark]
+capMarks marks = [capMark mark | mark <- marks]
+
+-- 9
+
+gradeStudents :: [StudentMark] -> [(String, Char)]
+gradeStudents marks = [(fst mark, grade mark) | mark <- marks]
+
+-- 10
+
+duplicate :: String -> Int -> String
+duplicate str 1 = str
+duplicate str n = str ++ duplicate str (n-1)
+
+duplicateWithList :: String -> Int -> String
+duplicateWithList str n = concat [str | i <- [1 .. n]]
+
+-- 11
+
+divisors :: Int -> [Int]
+divisors n = [i | i <- [1 .. n], n `mod` i == 0]
+
+-- 12
+
+isPrime :: Int -> Bool
+isPrime n = length (divisors n) == 2
+
+-- 13
+
+split :: [(a,b)] -> ([a], [b])
+split list = ([fst elem | elem <- list], [snd elem | elem <- list])
