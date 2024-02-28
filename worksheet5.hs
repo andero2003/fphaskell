@@ -86,7 +86,7 @@ orAll (x : xs) = x || orAll xs
 -- 8
 
 countIntegers :: Int -> [Int] -> Int
-countIntegers t [] = 0
+countIntegers _ [] = 0
 countIntegers t (x : xs)
   | x == t = 1 + countIntegers t xs
   | otherwise = countIntegers t xs
@@ -102,6 +102,7 @@ removeAll target list = [x | x <- list, x /= target]
 -- 10
 
 removeAllButFirst :: Int -> [Int] -> [Int]
+removeAllButFirst _ [] = []
 removeAllButFirst target (x : xs)
   | x == target = x : removeAll target xs
   | otherwise = x : removeAllButFirst target xs

@@ -1,4 +1,3 @@
-import Control.Arrow (Arrow(first))
 import Data.Char
 
 -- 1
@@ -27,12 +26,12 @@ capMark (name, mark) = (name, min mark 40)
 -- 4
 
 firstNumbers :: Int -> [Int]
-firstNumbers n = if n <= 0 then [] else [1 .. n]
+firstNumbers n = [1 .. n]
 
 -- 5
 
 firstSquares :: Int -> [Int]
-firstSquares n = [x * x | x <- firstNumbers n]
+firstSquares n = [x ^ 2 | x <- firstNumbers n]
 
 -- 6
 
@@ -56,12 +55,12 @@ gradeStudents marks = [(fst mark, grade mark) | mark <- marks]
 
 -- 10
 
-duplicate :: String -> Int -> String
-duplicate str 1 = str
-duplicate str n = str ++ duplicate str (n-1)
+-- duplicate :: String -> Int -> String
+-- duplicate str 1 = str
+-- duplicate str n = str ++ duplicate str (n-1)
 
 duplicateWithList :: String -> Int -> String
-duplicateWithList str n = concat [str | i <- [1 .. n]]
+duplicateWithList str n = concat [str | _ <- [1 .. n]]
 
 -- 11
 
