@@ -69,10 +69,10 @@ countBetween m n = foldr (\x acc -> if x >= m && x <= n then acc + 1 else 0) 0
 -- 8
 
 andAll :: [Bool] -> Bool
-andAll xs = foldr (&&) True xs
+andAll = foldr (&&) True
 
 alwaysPositive :: (Float -> Float) -> [Float] -> Bool
-alwaysPositive f = andAll . map (>0) . map f 
+alwaysPositive f = andAll . map ((>0) . f) 
 
 -- 9 
 
@@ -80,3 +80,34 @@ productSquareRoots :: [Float] -> Float
 productSquareRoots list = foldr ((*) . sqrt) 0 (filter (>0) list) 
 
 -- 10
+
+removeFirst :: (a -> Bool) -> [a] -> [a]
+removeFirst f [] = []
+removeFirst f (x:xs)
+    | f x = xs
+    | otherwise = x : removeFirst f xs
+
+-- 11
+
+removeLast :: (a -> Bool) -> [a] -> [a]
+removeLast f list = reverse(removeFirst f (reverse list))
+
+-- 12
+
+zeroToTenLambda :: [Int] -> [Int]
+zeroToTenLambda = filter (\x -> x >= 0 && x <= 10)
+
+-- 13
+
+-- a)
+
+alwaysPositiveFoldr :: (Float -> Float) -> [Float] -> Bool
+alwaysPositiveFoldr f = foldr (\x acc -> (f x > 0) && acc) True
+
+-- b)
+productSquareRootsFoldr :: [Float] -> Float
+productSquareRootsFoldr = foldr (\x acc -> if x > 0 then sqrt x * acc else acc) 1
+
+-- c)
+reverseFoldr :: [a] -> [a]
+reverseFoldr = foldr (\x xs -> xs ++ [x]) []
