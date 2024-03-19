@@ -133,5 +133,10 @@ testBinaryTree = Node 5 (Node 1 Null Null) (Node 8 (Node 7 Null Null) Null)
 insert :: Int -> Tree -> Tree
 insert x Null = Node x Null Null
 insert x (Node val left right)
-     | x < val = insert x left
-     | otherwise = insert x right
+     | x < val = Node val (insert x left) right
+     | otherwise = Node val left (insert x right)
+
+-- 12
+
+listToSearchTree :: [Int] -> Tree
+listToSearchTree = foldl (\acc x -> insert x acc) Null
